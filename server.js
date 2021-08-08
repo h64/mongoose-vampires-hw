@@ -157,9 +157,59 @@ mongoose.connection.on('connected', () => {
 
 /////////////////////////////////////////////////
 //### Select objects that match one of several values
+// Vampire.find({ loves: { $in: ["frilly shirtsleeves", "frilly collars"] } }, (err, foundVampires) => {
+//     if(err) return console.log(err);
+//     // console.log(foundVampires)
+//     console.log(`Found: ${foundVampires.length} frilly clothes`)
+// })
+// Vampire.find({ loves: { $in: ["brooding"] } }, (err, foundVampires) => {
+//     if(err) return console.log(err);
+//     // console.log(foundVampires)
+//     console.log(`Found: ${foundVampires.length} brooding`)
+// })
+
+// Vampire.find({ loves: { $in: ["appearing innocent", "trickery", "lurking in rotting mansions", "R&B music"] } }, (err, foundVampires) => {
+//     if(err) return console.log(err);
+//     // console.log(foundVampires)
+//     console.log(`Found: ${foundVampires.length} w/ loves`)
+// })
+
+// Vampire.find({ loves: { $in: ["fancy cloaks"], $nin: ["top hats", "virgin blood"]  } }, (err, foundVampires) => {
+//     if(err) return console.log(err);
+//     console.log(foundVampires)
+//     console.log(`Found: ${foundVampires.length} w/ love for fancy cloaks but not top hats or virgin blood`)
+// })
 
 /////////////////////////////////////////////////
 //### Negative Selection
+// https://docs.mongodb.com/manual/reference/operator/query/and/
+// Vampire.find({ $and: [
+//     { loves: { $in: ["ribbons"] } },
+//     { eye_color: { $nin: ["brown"] } }
+// ]}, (err, foundVampires) => {
+//     if(err) return console.log(err);
+//     console.log(foundVampires)
+//     console.log(`Found: ${foundVampires.length} who loves ribbons w/o brown eyes`)
+// })
+
+// Vampire.find({ location: { $ne: "Rome, Italy" }}, (err, foundVampires) => {
+//     if(err) return console.log(err);
+//     console.log(foundVampires)
+//     console.log(`Found: ${foundVampires.length} who aren't from Rome`)
+// })
+
+// Vampire.find({ loves: { $nin: ['fancy cloaks', 'frilly shirtsleeves', 'appearing innocent', 'being tragic', 'brooding']}}, (err, foundVampires) => {
+//     if(err) return console.log(err);
+//     // console.log(foundVampires)
+//     console.log(`Found: ${foundVampires.length} who dont like the following`)
+// })
+
+Vampire.find({ victims: { $lt: 200 }}, (err, foundVampires) => {
+    if(err) return console.log(err);
+    // console.log(foundVampires)
+    console.log(`Found ${foundVampires.count} vampires w kc < 200`)
+})
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
