@@ -122,7 +122,7 @@ describe('Vampire schema', function() {
             victims: "I abhor violence"
         })
         pacifist.validate(function(err){
-            expect(err.errors.victims).to.exist;
+            expect(err.errors['loves.0']).to.exist;
             expect(err.errors.victims.kind.toLowerCase()).to.eq('number');
             done();
         })
